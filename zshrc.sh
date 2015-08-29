@@ -73,6 +73,9 @@ git_super_status() {
 	  if [ "$GIT_AHEAD" -ne "0" ]; then
 		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_AHEAD$GIT_AHEAD%{${reset_color}%}"
 	  fi
+    if [ "$GIT_STASHED" -ne "0" ]; then
+      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STASHED$GIT_STASHED%{${reset_color}%}"
+    fi
 	  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_SEPARATOR"
 	  if [ "$GIT_STAGED" -ne "0" ]; then
 		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STAGED$GIT_STAGED%{${reset_color}%}"
@@ -89,9 +92,6 @@ git_super_status() {
 	  if [ "$GIT_CHANGED" -eq "0" ] && [ "$GIT_CONFLICTS" -eq "0" ] && [ "$GIT_STAGED" -eq "0" ] && [ "$GIT_UNTRACKED" -eq "0" ]; then
 		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CLEAN"
 	  fi
-    if [ "$GIT_STASHED" -ne "0" ]; then
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STASHED$GIT_STASHED%{${reset_color}%}"
-    fi
 	  STATUS="$STATUS%{${reset_color}%}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 	  echo "$STATUS"
 	fi
